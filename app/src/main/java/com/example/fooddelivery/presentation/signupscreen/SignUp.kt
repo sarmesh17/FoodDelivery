@@ -1,7 +1,10 @@
 package com.example.fooddelivery.presentation.signupscreen
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,24 +24,31 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TextFieldDefaults.outlinedTextFieldColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,11 +57,14 @@ import com.example.fooddelivery.R
 import com.example.fooddelivery.ui.theme.Lato
 import com.example.fooddelivery.ui.theme.black
 import com.example.fooddelivery.ui.theme.white
+import com.example.fooddelivery.viewmodels.SignupViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview(showSystemUi = true)
 @Composable
-fun ScreenFirst() {
+fun SignupScreen(
+    signupViewModel: SignupViewModel
+) {
+
+    var passwordVisible by remember { mutableStateOf(false) }
 
     val popFontFamily = FontFamily(
         Font(R.font.yeonsung_regular, FontWeight.Normal)
@@ -59,36 +72,39 @@ fun ScreenFirst() {
     val latoFontFamily = FontFamily(
         Font(R.font.lato_black)
     )
-    val Name = remember {
+    val name = remember {
         mutableStateOf("")
     }
-    val Email = remember {
+    val email = remember {
         mutableStateOf("")
     }
-    val Password = remember {
+    val password = remember {
         mutableStateOf("")
     }
-    Column (
+
+    val context = LocalContext.current
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 75.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .padding(top = 15.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+
+
     ) {
         Image(
             painter = painterResource(id = R.drawable.g10),
             contentDescription = "Logo",
-            modifier = Modifier.size(91.dp,92.dp)
+            modifier = Modifier.size(91.dp, 92.dp)
         )
 
         Text(
-            text = "Waves Of Food" ,
+            text = "Waves Of Food",
             fontSize = 40.sp,
             fontWeight = FontWeight(400),
             fontFamily = popFontFamily,
             color = Color.Red
         )
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = "Deliever Favorite Food",
@@ -96,7 +112,7 @@ fun ScreenFirst() {
             fontFamily = latoFontFamily,
             color = Lato
         )
-        Spacer(modifier = Modifier.height(25.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = "Sign Up Here",
@@ -105,91 +121,90 @@ fun ScreenFirst() {
             fontFamily = popFontFamily,
             color = Color.Red
         )
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Box (
+
+        // Text-field
+        Column(
             modifier = Modifier
-                .height(195.dp)
-                .padding(start = 27.dp),
-            contentAlignment = Alignment.Center,
-
-            ){
-            Column {
-
-
-                OutlinedTextField(value = Name.value, onValueChange = {
-                    Name.value = it
-                }, leadingIcon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.outline_person_24),
-                        contentDescription = "person"
-                    )
-                },
-                    label = {
-                        Text(text = "Name")
-                    }, modifier = Modifier
-                        .fillMaxWidth(),
-                    // .padding(start = 27.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = Color.White,
-                        unfocusedBorderColor = Color.White
-                    )
+                .padding(start = 16.dp, end = 16.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            OutlinedTextField(value = name.value, onValueChange = {
+                name.value = it
+            }, leadingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.outline_person_24),
+                    contentDescription = "person"
                 )
-                Spacer(modifier = Modifier.height(11.dp))
-
-                OutlinedTextField(value = Email.value, onValueChange = {
-                    Email.value = it
-                }, leadingIcon = {
-                    Icon(
-                        painter = painterResource(id = R.drawable.outline_email_24),
-                        contentDescription = "Email"
-                    )
-                },
-                    label = {
-                        Text(text = "Email or Phone Number")
-                    }, modifier = Modifier
-                        .fillMaxWidth(),
-                    // .padding(start = 27.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = Color.White,
-                        unfocusedBorderColor = Color.White
-                    )
+            },
+                label = {
+                    Text(text = "Name")
+                }, modifier = Modifier
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(20.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.White
                 )
-                Spacer(modifier = Modifier.height(11.dp))
+            )
+            Spacer(modifier = Modifier.height(8.dp))
 
-                OutlinedTextField(value = Password.value, onValueChange = {
-                    Password.value = it
-                }, leadingIcon = {
+            OutlinedTextField(value = email.value, onValueChange = {
+                email.value = it
+            }, leadingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.outline_email_24),
+                    contentDescription = "Email"
+                )
+            },
+                label = {
+                    Text(text = "Email")
+                }, modifier = Modifier
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(20.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.White,
+
+                    )
+            )
+              Spacer(modifier = Modifier.height(16.dp))
+            OutlinedTextField(
+                value = password.value,
+                onValueChange = {
+                    password.value = it
+                },
+                leadingIcon = {
                     Icon(
                         painter = painterResource(id = R.drawable.outline_lock_24),
                         contentDescription = "Email"
                     )
                 },
-                    label = {
-                        Text(text = "Password")
-                    }, modifier = Modifier
-                        .fillMaxWidth(),
-                    // .padding(start = 27.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = white,
-                        unfocusedBorderColor = white
-                    ),
+                label = {
+                    Text(text = "Password")
+                },
+                modifier = Modifier
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(20.dp),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.White
+                ),
 
-                    trailingIcon = {
-                        IconButton(onClick = { /*TODO*/ }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.outline_visibility_off_24),
-                                contentDescription = "visibility"
-                            )
-                        }
+                trailingIcon = {
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.outline_visibility_off_24),
+                            contentDescription = "visibility",
+                        )
                     }
-                )
-                Spacer(modifier = Modifier.height(10.dp))
+                },
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation()
 
-            }
+            )
+
         }
 
         val annotatedText = buildAnnotatedString {
@@ -197,22 +212,24 @@ fun ScreenFirst() {
             append("Or\n\n")
             pop()
 
-            pushStyle(SpanStyle(fontSize = 20.sp,))
+            pushStyle(SpanStyle(fontSize = 20.sp))
             append("Sign Up With")
             pop()
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Text(
             text = annotatedText,
             fontWeight = FontWeight(400),
             fontFamily = popFontFamily,
-            color = black,
+            color = Color.Black,
             textAlign = TextAlign.Center
         )
-        Spacer(modifier = Modifier.height(18.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Row (
-
-        ){
+        Row {
+            // Facebook button
             Button(
                 onClick = { /*TODO*/ },
                 modifier = Modifier
@@ -223,13 +240,13 @@ fun ScreenFirst() {
                 colors = ButtonDefaults.buttonColors(white),
 
                 ) {
-                Row (
+                Row(
                     verticalAlignment = Alignment.CenterVertically
-                ){
+                ) {
                     Image(
                         painter = painterResource(id = R.drawable.facebook_31),
-                        contentDescription ="Facebook",
-                        modifier = Modifier.size(25.dp,25.dp)
+                        contentDescription = "Facebook",
+                        modifier = Modifier.size(25.dp, 25.dp)
                     )
                     Spacer(modifier = Modifier.width(15.dp))
                     Text(
@@ -240,6 +257,7 @@ fun ScreenFirst() {
 
             }
 
+            // sign-up button
             Button(
                 onClick = { /*TODO*/ },
                 modifier = Modifier
@@ -249,30 +267,37 @@ fun ScreenFirst() {
                 colors = ButtonDefaults.buttonColors(white),
 
                 ) {
-                Row (
+                Row(
                     verticalAlignment = Alignment.CenterVertically
-                ){
+                ) {
                     Image(
                         painter = painterResource(id = R.drawable.google_icon_1),
-                        contentDescription ="Google",
-                        modifier = Modifier.size(25.dp,25.dp)
+                        contentDescription = "Google",
+                        modifier = Modifier.size(25.dp, 25.dp)
                     )
                     Spacer(modifier = Modifier.width(15.dp))
                     Text(
                         text = "Google",
-                        color = black,
+                        color = Color.Black,
                     )
                 }
 
 
             }
         }
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
+        // Create account Button
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                if (email.value.isEmpty() || password.value.isEmpty() || name.value.isEmpty()) {
+                    Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+                } else {
+                    signupViewModel.signup(email.value, password.value, name.value)
+                }
+
+            },
             modifier = Modifier
-                .padding(16.dp)
                 .height(57.dp)
                 .width(157.dp),
             shape = RoundedCornerShape(15.dp),
@@ -282,14 +307,14 @@ fun ScreenFirst() {
             ) {
             Text(
                 text = "Create Account",
-                color = white,
+                color = Color.White,
                 fontFamily = popFontFamily,
                 fontSize = 15.sp
             )
 
 
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Text(
             text = "Already Have An Account?",
@@ -298,4 +323,15 @@ fun ScreenFirst() {
             fontSize = 12.sp
         )
     }
+
+
+}
+
+
+@Preview(showSystemUi = true)
+@Composable
+fun SignupPrev() {
+
+    SignupScreen(signupViewModel = SignupViewModel())
+
 }

@@ -1,9 +1,6 @@
 package com.example.fooddelivery.presentation.onboardingscreens
 
-import android.view.Surface
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,18 +8,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -34,22 +27,29 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.fooddelivery.R
-import com.example.fooddelivery.ui.theme.white
 
 @Composable
     @Preview(showSystemUi = true)
 fun LogInScreen() {
     val popFontFamily = FontFamily(Font(R.font.yeonsung))
+
+    var email by remember {
+        mutableStateOf("")
+    }
+
+    var password: String by remember {
+        mutableStateOf("")
+    }
+
+    // logo-part
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(30.dp))
         Column(
@@ -87,33 +87,52 @@ fun LogInScreen() {
             )
 
         }
+
+        // text-field part
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            var email: String by remember {
-                mutableStateOf("Email or Phone Number")
-            }
-            TextField(
+
+            // email-text field
+            OutlinedTextField(
 
                 value = email,
                 onValueChange = { newText ->
                     email = newText
-                }
+                }, label = {
+                    Text(text = "Email")
+                }, colors = OutlinedTextFieldDefaults.colors(
 
-            )
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.White
+
+                ),
+                shape = RoundedCornerShape(20.dp),
+
+                )
             Spacer(modifier = Modifier.height(15.dp))
-            var password: String by remember {
-                mutableStateOf("Password")
-            }
-            TextField(
+
+
+            // password-text field
+            OutlinedTextField(
                 value = password,
                 onValueChange = { newText ->
                     password = newText
-                }
+                }, label = {
+                    Text(text = "Password")
+                }, colors = OutlinedTextFieldDefaults.colors(
+
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.White
+
+                ),
+                shape = RoundedCornerShape(20.dp),
             )
-            Spacer(modifier = Modifier.height(20.dp))
+
+            Spacer(modifier = Modifier.height(8.dp))
             Text(text = "or")
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "Continue With",
                 fontFamily = popFontFamily, fontSize = 20.sp
@@ -121,7 +140,7 @@ fun LogInScreen() {
             Column {
                 Row {
                     Button(
-                        onClick = { TODO() },
+                        onClick = { /*TODO()*/ },
                         modifier = Modifier
                             .padding(16.dp)
                             .height(57.dp)
@@ -150,7 +169,7 @@ fun LogInScreen() {
                     }
                 }
             }
-            Spacer(modifier = Modifier.height(20.dp))
+
 
             Column(
                 verticalArrangement = Arrangement.Center,
@@ -160,7 +179,6 @@ fun LogInScreen() {
                 Button(
                     onClick = { TODO() },
                     modifier = Modifier
-                        .padding(16.dp)
                         .height(57.dp)
                         .width(157.dp),
                     shape = RoundedCornerShape(16.dp),
@@ -177,6 +195,7 @@ fun LogInScreen() {
 
 
                 }
+                Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "Don't Have Account?",
                     color = colorResource(id = R.color.btn_clr),
