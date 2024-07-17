@@ -8,4 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="btn_clr">#E34C4C</color>
+
+    <color name="DarkRed">#ffbb0c24</color>
+    <color name="orange">#fffead1d</color>
+    <color name="LightPink">#FFFDECEC</color>
+    <color name="LightRed">#FFD57A7A</color>
+    <color name="Fade">#3B3B3B</color>
 </resources>
