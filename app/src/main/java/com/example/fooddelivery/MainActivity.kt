@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
             FoodDeliveryTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Modifier.padding(innerPadding)
+                    HomeScreen()
                 }
             }
         }

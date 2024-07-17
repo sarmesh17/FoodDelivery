@@ -1,7 +1,6 @@
 package com.example.fooddelivery.presentation.homescreen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,9 +15,16 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.DockedSearchBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,6 +40,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.fooddelivery.R
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showSystemUi = true)
 @Composable
 fun HomeScreen() {
@@ -45,9 +53,18 @@ fun HomeScreen() {
         R.drawable.banner2,
         R.drawable.banner3,
     )
+    var query by remember {
+        mutableStateOf("")
+    }
+    var active by remember {
+        mutableStateOf(false)
+    }
+
 
     Column (
-        modifier = Modifier.fillMaxSize().padding(bottom = 100.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 100.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
@@ -75,23 +92,30 @@ fun HomeScreen() {
                 )
             }
         }
-
-        Box(
-            modifier = Modifier
-                .size(345.dp, 60.dp)
-                .background(colorResource(id = R.color.LightPink), shape = RoundedCornerShape(15.dp))
-                .padding(16.dp),
-        ) {
-            Row (verticalAlignment = Alignment.CenterVertically){
+        DockedSearchBar(
+            query = query,
+            onQueryChange = { query = it },
+            onSearch = { active = false } ,
+            active = active,
+            onActiveChange = {
+                active = it
+            },
+            placeholder ={
+                Text(text = "What do you want to order?")
+            },
+            colors = SearchBarDefaults.colors(colorResource(id = R.color.LightPink)),
+            shape = RoundedCornerShape(15.dp),
+            leadingIcon = {
                 Icon(painter = painterResource(id = R.drawable.icon_search),
                     contentDescription ="search",
                     modifier = Modifier.size(29.dp,29.dp),
                     tint = Color.Red
                 )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "What do you want to order?",color = colorResource(id = R.color.LightRed), fontSize = 16.sp)
             }
+        ) {
+            //of searchbar
         }
+
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth()
