@@ -26,28 +26,35 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.fooddelivery.R
+
 @Preview(showSystemUi = true)
 @Composable
 
 fun screen7() {
+
     val popFontFamily = FontFamily(Font(R.font.yeonsung))
-    Column(modifier = Modifier
-        .fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
 
 
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(1000.dp)
-                .padding(top = 70.dp),
+            modifier = Modifier.fillMaxSize(),
+
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
 
-        ) {
+            ) {
+
             Text(
-                text = "     Congrats\n" +
-                        "Your Order Placed"
-                       , fontSize = 40.sp,
+                text = " Congrats",
+                fontSize = 40.sp,
+                color = colorResource(id = R.color.btn_clr),
+                fontFamily = popFontFamily
+            )
+            Text(
+                text = "Your Order Placed", fontSize = 40.sp,
                 color = colorResource(id = R.color.btn_clr),
                 fontFamily = popFontFamily
 
@@ -57,13 +64,8 @@ fun screen7() {
                 painter = painterResource(id = R.drawable.imgforscreen7),
                 contentDescription = null
             )
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(250.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+
+            Spacer(modifier = Modifier.height(60.dp))
 
                 Button(
                     onClick = { TODO() },
@@ -90,4 +92,4 @@ fun screen7() {
         }
     }
 
-}
+
