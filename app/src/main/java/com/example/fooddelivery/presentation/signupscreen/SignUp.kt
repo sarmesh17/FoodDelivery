@@ -132,8 +132,8 @@ fun ScreenFirst() {
                     // .padding(start = 27.dp),
                     shape = RoundedCornerShape(20.dp),
                     colors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = white,
-                        unfocusedBorderColor = white
+                        focusedBorderColor = Color.White,
+                        unfocusedBorderColor = Color.White
                     )
                 )
                 Spacer(modifier = Modifier.height(11.dp))
@@ -153,8 +153,8 @@ fun ScreenFirst() {
                     // .padding(start = 27.dp),
                     shape = RoundedCornerShape(20.dp),
                     colors = TextFieldDefaults.outlinedTextFieldColors(
-                        focusedBorderColor = white,
-                        unfocusedBorderColor = white
+                        focusedBorderColor = Color.White,
+                        unfocusedBorderColor = Color.White
                     )
                 )
                 Spacer(modifier = Modifier.height(11.dp))
