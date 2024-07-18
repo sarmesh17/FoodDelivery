@@ -34,10 +34,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.fooddelivery.R
+import com.example.fooddelivery.viewmodels.LoginScreenViewModel
 
 @Composable
-    @Preview(showSystemUi = true)
-fun LogInScreen() {
+fun LogInScreen(
+     loginScreenViewModel: LoginScreenViewModel
+) {
     val popFontFamily = FontFamily(Font(R.font.yeonsung))
 
     var email by remember {
@@ -176,7 +178,7 @@ fun LogInScreen() {
             ) {
                 Spacer(modifier = Modifier.height(20.dp))
                 Button(
-                    onClick = { TODO() },
+                    onClick = { loginScreenViewModel.validateUser(email, password) },
                     modifier = Modifier
                         .height(57.dp)
                         .width(157.dp),
