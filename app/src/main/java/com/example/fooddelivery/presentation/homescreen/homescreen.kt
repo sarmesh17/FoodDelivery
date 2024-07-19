@@ -64,8 +64,8 @@ fun HomeScreen() {
     Column (
         modifier = Modifier
             .fillMaxSize()
-            .padding(bottom = 100.dp),
-        verticalArrangement = Arrangement.Center,
+            .padding(top = 40.dp),
+        //verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Row (
@@ -103,6 +103,7 @@ fun HomeScreen() {
             placeholder ={
                 Text(text = "What do you want to order?")
             },
+            modifier = Modifier.size(350.dp,60.dp),
             colors = SearchBarDefaults.colors(colorResource(id = R.color.LightPink)),
             shape = RoundedCornerShape(15.dp),
             leadingIcon = {
