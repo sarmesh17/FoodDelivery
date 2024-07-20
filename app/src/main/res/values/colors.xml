@@ -9,5 +9,13 @@
     <color name="white">#FFFFFFFF</color>
    <color name="darkGreen">#53e88b</color>
     <color name="btn_clr">#E34C4C</color>
+
+    <color name="DarkRed">#ffbb0c24</color>
+    <color name="whitee">#fff4f4f4</color>
+    <color name="blackk">#ff09051c</color>
+    <color name="orange">#fffead1d</color>
+    <color name="LightPink">#FFFDECEC</color>
+    <color name="LightRed">#FFD57A7A</color>
+    <color name="Fade">#3B3B3B</color>
     <color name="HintGreen">#eafaf2</color>
 </resources>

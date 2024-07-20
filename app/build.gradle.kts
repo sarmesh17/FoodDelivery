@@ -82,7 +82,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     // preference dataStore
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(libs.androidx.datastore.preferences)
 
     // dependency injection
     implementation("com.google.dagger:hilt-android:2.49")
@@ -90,6 +90,10 @@ dependencies {
 
     // hilt
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    //coil
+    implementation("io.coil-kt:coil-compose:2.7.0")
+
 
 
 

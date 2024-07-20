@@ -26,8 +26,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FoodDeliveryTheme {
-                    FirebaseApp.initializeApp(this)
 
+                    FirebaseApp.initializeApp(this)
                        val startDestination=mainViewModel.startDestination
                        FoodDeliveryNavigation(startDestination)
                 }
