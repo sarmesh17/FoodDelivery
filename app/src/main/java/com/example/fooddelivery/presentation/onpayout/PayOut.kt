@@ -13,6 +13,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -61,18 +64,13 @@ fun PayOut() {
     var expanded by remember {
         mutableStateOf(false)
     }
-    val list = listOf("Credit Card", "Debit Card", "Online Payment")
-    var selectedItem by remember {
-        mutableStateOf("")
-    }
+    val list = listOf("Credit Card", "Debit Card", "Cash on Delivery")
+    var selectedItem by remember { mutableStateOf("Payment Method") }
+
     var textFieldSize by remember {
         mutableStateOf(androidx.compose.ui.geometry.Size.Zero)
     }
-    /*val icon = if (expanded){
-        Icons.Filled.KeyboardArrowUp
-    }else{
-        Icons.Filled.KeyboardArrowDown
-    }*/
+
 
     Column(
         modifier = Modifier
@@ -235,25 +233,27 @@ fun PayOut() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ){
                 Column {
-
-                    // button for payment method
                     Button(
                         modifier = Modifier
                             .onGloballyPositioned { coordinates ->
                                 textFieldSize = coordinates.size.toSize()
                             },
-                        onClick = {expanded = !expanded},
+                        onClick = { expanded = !expanded },
                         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.whitee))
-
                     ) {
-                        Text(
-                            //modifier = Modifier.padding(start = 20.dp),
-                            text = "Payment Method",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight(400),
-                            fontFamily = popFontFamily,
-                            color = Color.Black
-                        )
+                        Row (verticalAlignment = Alignment.CenterVertically){
+
+
+                            Text(
+                                text = selectedItem,
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight(400),
+                                fontFamily = popFontFamily,
+                                color = Color.Black
+                            )
+                           Spacer(modifier = Modifier.width(4.dp))
+                            Icon(imageVector = Icons.Filled.KeyboardArrowDown, contentDescription = null, tint = Color.Black )
+                        }
                     }
 
                     DropdownMenu(
