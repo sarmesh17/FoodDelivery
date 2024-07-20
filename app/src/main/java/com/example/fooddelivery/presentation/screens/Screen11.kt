@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -36,20 +37,20 @@ import com.example.fooddelivery.ui.theme.white
 fun Screen11() {
     val popFontFamily = FontFamily(Font(R.font.yeonsung))
     Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxSize().padding(start = 16.dp),
     ) {
 
-        Row(modifier = Modifier.padding(top = 20.dp)) {
+        Row(modifier = Modifier.padding(top = 20.dp), verticalAlignment = Alignment.CenterVertically) {
             Image(
                 painter = painterResource(id = R.drawable.arrowcircleleft),
                 contentDescription = null,
                 Modifier.size(30.dp, 30.dp)
             )
-            Spacer(modifier = Modifier.width(80.dp))
+
+            Spacer(modifier = Modifier.width(16.dp))
 
             Text(
-                text = "Hello,  lorem ipsum",
+                text = "Write your FeedBack Here",
                 modifier = Modifier,
                 fontSize = 20.sp,
                 fontFamily = popFontFamily,
@@ -83,12 +84,14 @@ fun Screen11() {
                 color = colorResource(id = R.color.btn_clr)
             )
         }
+
         Spacer(modifier = Modifier.height(20.dp))
+
+
+
         Button(
             onClick = { TODO() },
-            modifier = Modifier
-                .height(57.dp)
-                .width(157.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 65.dp).height(57.dp),
             shape = RoundedCornerShape(16.dp),
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.btn_clr))
         ) {
