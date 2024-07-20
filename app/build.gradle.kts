@@ -73,5 +73,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
 
+    //coil
+    implementation("io.coil-kt:coil-compose:2.7.0")
+
+
 
 }

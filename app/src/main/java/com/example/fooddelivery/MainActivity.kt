@@ -30,6 +30,8 @@ class MainActivity : ComponentActivity() {
                     FirebaseApp.initializeApp(this)
 
                     SignupScreen(signupViewModel = signupViewModel)
+
+
                 }
             }
         }
