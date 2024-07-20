@@ -25,12 +25,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FoodDeliveryTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Modifier.padding(innerPadding)
-                    FirebaseApp.initializeApp(this)
 
-                    SignupScreen(signupViewModel = signupViewModel)
-                }
             }
         }
     }
