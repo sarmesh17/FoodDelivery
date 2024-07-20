@@ -31,7 +31,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.fooddelivery.R
@@ -39,8 +38,7 @@ import com.example.fooddelivery.module.ItemCardModule
 import com.example.fooddelivery.presentation.cards.ItemCard
 
 @Composable
-@Preview(showSystemUi = true)
-fun Screen8() {
+fun OrderHistoryScreen() {
     val popFontFamily = FontFamily(Font(R.font.yeonsung))
 
     val list= listOf(ItemCardModule(image = null,"Burger","American","120"),
@@ -155,7 +153,7 @@ fun Screen8() {
         }
 
 
-        LazyColumn(modifier = Modifier.fillMaxSize().padding(start = 16.dp, top = 25.dp), ) {
+        LazyColumn(modifier = Modifier.fillMaxSize().padding(start = 16.dp, top = 25.dp) ) {
 
             items(list){
                   ItemCard(itemCardModule = it)
