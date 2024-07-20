@@ -7,7 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-   <color name="darkGreen">#53e88b</color>
     <color name="btn_clr">#E34C4C</color>
 
     <color name="DarkRed">#ffbb0c24</color>
@@ -23,4 +22,6 @@
     <color name="gray_clr">#c5c5c5</color>
     <color name="lgtgreen">#cdf2e0</color>
     <color name="HintGreen">#eafaf2</color>
+    <color name="left">#E85353</color>
+    <color name="right">#BE1515</color>
 </resources>
