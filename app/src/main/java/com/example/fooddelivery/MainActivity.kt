@@ -4,13 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
 import com.example.fooddelivery.navigation.FoodDeliveryNavigation
-import com.example.fooddelivery.presentation.loginscreen.LogInScreen
-import com.example.fooddelivery.presentation.signupscreen.SignupScreen
 import com.example.fooddelivery.ui.theme.FoodDeliveryTheme
 import com.example.fooddelivery.viewmodels.LoginScreenViewModel
 import com.example.fooddelivery.viewmodels.SignupViewModel

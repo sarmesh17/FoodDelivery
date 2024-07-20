@@ -39,12 +39,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.fooddelivery.R
+import com.example.fooddelivery.module.Category
+import com.example.fooddelivery.presentation.cards.BlogCategory
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showSystemUi = true)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(category: Category) {
     val popFontFamily = FontFamily(
         Font(R.font.yeonsung_regular, FontWeight.Normal)
     )
@@ -159,7 +160,7 @@ fun HomeScreen() {
         ){
             LazyColumn (content = {
                 items(getCategoryList()){item ->
-                    BlogCategory(img = item.img, title = item.subtitle, subtitle = item.subtitle, price = item.price)
+                    BlogCategory(item)
                 }
             })
         }
@@ -167,39 +168,7 @@ fun HomeScreen() {
     }
 
 }
-@Composable
-fun BlogCategory(img: Int, title:String, subtitle: String, price: String){
-    val popFontFamily = FontFamily(
-        Font(R.font.yeonsung_regular, FontWeight.Normal)
-    )
-    Row(
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Image(
-            painter = painterResource(id =img),
-            contentDescription = null,
-            modifier = Modifier
-                .size(60.dp)
-                .weight(2f)
-        )
-        Spacer(modifier = Modifier.width(8.dp))
-        Column(modifier = Modifier.weight(6f)) {
-            Text(text =title, fontSize = 20.sp, fontFamily = popFontFamily, fontWeight = FontWeight(400))
-            Text(text =subtitle, fontSize = 15.sp , color = colorResource(id = R.color.Fade))
-        }
-        Text(
-            text =price,
-            color = Color.Red,
-            modifier = Modifier.weight(2f), textAlign = TextAlign.Center,
-            fontSize = 22.sp
-        )
-    }
-}
 
-data class Category(val img: Int, val title: String,val subtitle: String, val price: String)
 
 fun getCategoryList(): MutableList<Category>{
     val list = mutableListOf<Category>()
@@ -209,3 +178,4 @@ fun getCategoryList(): MutableList<Category>{
 
     return list
 }
+
