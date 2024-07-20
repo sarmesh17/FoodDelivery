@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
     kotlin("plugin.serialization") version "2.0.0"
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 
 }
 
@@ -78,6 +80,17 @@ dependencies {
     // navigation
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
+
+    // preference dataStore
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+    // dependency injection
+    implementation("com.google.dagger:hilt-android:2.49")
+    kapt("com.google.dagger:hilt-android-compiler:2.48.1")
+
+    // hilt
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
 
 
 }

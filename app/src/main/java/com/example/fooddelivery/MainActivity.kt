@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import com.example.fooddelivery.navigation.FoodDeliveryNavigation
 import com.example.fooddelivery.presentation.loginscreen.LogInScreen
 import com.example.fooddelivery.presentation.signupscreen.SignupScreen
 import com.example.fooddelivery.ui.theme.FoodDeliveryTheme
@@ -18,22 +19,20 @@ import com.google.firebase.FirebaseApp
 class MainActivity : ComponentActivity() {
 
 
+    private val mainViewModel:MainViewModel by viewModels()
     private  val signupViewModel: SignupViewModel by viewModels()
     private  val loginScreenViewModel: LoginScreenViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             FoodDeliveryTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Modifier.padding(innerPadding)
                     FirebaseApp.initializeApp(this)
-//                    SignupScreen(signupViewModel = signupViewModel)
 
-                    LogInScreen(loginScreenViewModel = loginScreenViewModel)
-
+                       val startDestination=mainViewModel.startDestination
+                       FoodDeliveryNavigation(startDestination)
                 }
             }
         }
     }
-}
+
 
