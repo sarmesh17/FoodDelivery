@@ -148,10 +148,9 @@ fun CartScreen() {
                 .size(350.dp, 210.dp)
                 .background(
                     brush = Brush.horizontalGradient(
-                        colors = listOf(colorResource(id = R.color.left), colorResource(id = R.color.right))
-                    )
+                        colors = listOf(colorResource(id = R.color.left), colorResource(id = R.color.right),)
+                    ), shape = RoundedCornerShape(12.dp)
                 )
-                .clip(RoundedCornerShape(20.dp))
         ){
             Image(
                 modifier = Modifier
@@ -159,6 +158,7 @@ fun CartScreen() {
                 painter = painterResource(id = R.drawable.pattern),
                 contentDescription = "pattern",
                 contentScale = ContentScale.FillBounds,
+
             )
             Column(modifier = Modifier
                 .size(315.dp, 110.dp)
