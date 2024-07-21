@@ -136,43 +136,10 @@ fun Screen9new(){
             
         }
         Spacer(modifier = Modifier.height(150.dp))
-Card(modifier = Modifier
-    .fillMaxWidth()
-    .height(70.dp),)  {
-    Row (modifier = Modifier, horizontalArrangement = Arrangement.Center, verticalAlignment =Alignment.CenterVertically){
-        Image(painter = painterResource(id =R.drawable.home ), contentDescription =null,
-            Modifier
-                .size(30.dp, 30.dp)
-                .padding(start = 10.dp))
-        Spacer(modifier = Modifier.width(50.dp))
-        Image(painter = painterResource(id = R.drawable.shoppingcart), contentDescription =null , Modifier.size(24.dp, 24.dp))
-        Spacer(modifier = Modifier.width(50.dp))
-        Image(painter = painterResource(id = R.drawable.van), contentDescription =null,Modifier.size(24.dp,24.dp))
-        Spacer(modifier = Modifier.width(50.dp))
 
-        Image(painter = painterResource(id = R.drawable.list), contentDescription =null,Modifier.size(24.dp,24.dp))
-        Spacer(modifier = Modifier.width(15.dp))
-        Button(onClick = { /*TODO*/ }, modifier = Modifier
-            .size(110.dp, 60.dp)
-            .padding(top = 20.dp), shape = RoundedCornerShape(16.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = colorResource(id =R.color.lgtgreen ))
-
-        
-        ) {
-            Image(painter = painterResource(id = R.drawable.profile),
-                contentDescription =null)
-            Text(text = "Profile", color = Color.Black)
-            
         }
     }
 
 
-}
 
-
-        }
-
-
-
-}
 
